@@ -1,0 +1,31 @@
+Cassowary {
+	Program = Stmt+
+    Stmt = VarDec
+    	| PrintStmt
+        | WhileStmt
+        | IfStmt
+        | break ";" --break
+        | AssignmentStmt
+        | "++" id ";" --increment
+    VarDec = let id "=" Exp ";"
+    PrintStmt = print Exp ";"
+    AssignmentStmt = id "=" Exp ";"
+    IfStmt = if Exp Block (else (Block | IfStmt))?
+    WhileStmt = while Exp Block
+    Block = "{" Stmt* "}"
+    Exp = numeral
+    	| id
+        | "(" Exp ")" --parens
+    numeral = digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
+    let = "let" ~idchar
+    while = "while" ~idchar
+    if = "if" ~idchar
+    else = "else" ~idchar
+    idchar      = letter 
+                | digit 
+                | "_"
+    id          = ~keyword letter idchar*
+    print       = "print" ~idchar
+    break = "break" ~idchar
+    keyword = print | while | if | else | break | let
+}
