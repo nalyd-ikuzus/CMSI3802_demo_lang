@@ -16,7 +16,7 @@ Cassowary {
     Exp = numeral
     	| id
         | "(" Exp ")" --parens
-    numeral = digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
+    numeral = digit+ //("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
     let = "let" ~idchar
     while = "while" ~idchar
     if = "if" ~idchar
